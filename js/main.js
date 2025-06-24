@@ -22,7 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
       { spotId: "spot-20", previewId: "preview-20" },
       { spotId: "spot-21", previewId: "preview-21" },
       { spotId: "spot-22", previewId: "preview-22" },
-      { spotId: "spot-23", previewId: "preview-23" }
+      { spotId: "spot-23", previewId: "preview-23" },
+      { spotId: "spot-24", previewId: "preview-24" },
+      { spotId: "spot-25", previewId: "preview-25" },
+      { spotId: "spot-26", previewId: "preview-26" },
+      { spotId: "spot-27", previewId: "preview-27" }
     ];
   
     previewPairs.forEach(({ spotId, previewId }) => {
@@ -31,13 +35,23 @@ document.addEventListener("DOMContentLoaded", () => {
   
       if (spot && preview) {
         spot.addEventListener("mouseenter", () => {
+          // Show preview image
           preview.style.display = "block";
           preview.style.left = `${spot.offsetLeft + 30}px`;
           preview.style.top = `${spot.offsetTop - 10}px`;
+  
+          // Bring hovered spot to front
+          spot.style.zIndex = 1000;
         });
   
         spot.addEventListener("mouseleave", () => {
+          // Hide preview
           preview.style.display = "none";
+  
+          // Reset z-index after short delay
+          setTimeout(() => {
+            spot.style.zIndex = 10;
+          }, 200);
         });
       }
     });
